@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { StatusBadge } from "@/components/status-badge";
 import {
@@ -10,6 +10,10 @@ import {
 import type { CredentialStatus } from "@/lib/types/database";
 
 export default async function ComplianceReportPage() {
+  if (!isSupabaseConfigured()) {
+    redirect("/login");
+  }
+
   const supabase = await createClient();
   const {
     data: { user },

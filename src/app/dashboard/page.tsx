@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { StatusBadge } from "@/components/status-badge";
 import {
@@ -13,6 +13,10 @@ import { AddSubForm } from "./add-sub-form";
 import { RequestDocsButton } from "./request-docs-button";
 
 export default async function DashboardPage() {
+  if (!isSupabaseConfigured()) {
+    redirect("/login");
+  }
+
   const supabase = await createClient();
   const {
     data: { user },

@@ -1,5 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import Link from "next/link";
 
 export default async function PortalPage({
@@ -18,6 +17,20 @@ export default async function PortalPage({
           <p className="mt-2 text-sm text-gray-600">
             This upload link is invalid or has expired. Please contact your
             general contractor for a new link.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isSupabaseConfigured()) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+        <div className="w-full max-w-md rounded-xl bg-white p-8 text-center shadow-sm">
+          <h1 className="text-xl font-bold text-gray-900">Not Configured</h1>
+          <p className="mt-2 text-sm text-gray-600">
+            Supabase is not configured yet. Please set up your environment
+            variables.
           </p>
         </div>
       </div>
