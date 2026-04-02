@@ -3,26 +3,26 @@ import type { CredentialStatus } from "@/lib/types/database";
 export function getStatusColor(status: CredentialStatus): string {
   switch (status) {
     case "valid":
-      return "bg-green-100 text-green-800";
+      return "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-600/20";
     case "expiring_soon":
-      return "bg-yellow-100 text-yellow-800";
+      return "bg-amber-50 text-amber-700 ring-1 ring-amber-600/20";
     case "expired":
-      return "bg-red-100 text-red-800";
+      return "bg-red-50 text-red-700 ring-1 ring-red-600/20";
     case "missing":
-      return "bg-gray-100 text-gray-800";
+      return "bg-slate-50 text-slate-600 ring-1 ring-slate-500/20";
   }
 }
 
 export function getStatusDot(status: CredentialStatus): string {
   switch (status) {
     case "valid":
-      return "bg-green-500";
+      return "bg-emerald-500";
     case "expiring_soon":
-      return "bg-yellow-500";
+      return "bg-amber-500";
     case "expired":
       return "bg-red-500";
     case "missing":
-      return "bg-gray-400";
+      return "bg-slate-400";
   }
 }
 
